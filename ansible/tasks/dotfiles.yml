@@ -1,0 +1,20 @@
+- name: Link .dotfiles
+  file:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    force: true
+    state: link
+  with_items:
+    - { src: "~/.dotfiles/.xinitrc", dest: "~/.xinitrc" }
+    - { src: "~/.dotfiles/.xbindkeysrc", dest: "~/.xbindkeysrc" }
+    - { src: "~/.dotfiles/.zshrc", dest: "~/.zshrc" }
+    - { src: "~/.dotfiles/.config/gtk-3.0/settings.ini", dest: "~/.config/gtk-3.0/settings.ini" }
+    - { src: "~/.dotfiles/.config/i3/config", dest: "~/.config/i3/config" }
+    - { src: "~/.dotfiles/.config/i3status/config", dest: "~/.config/i3status/config" }
+    - { src: "~/.dotfiles/.config/i3/arch.png", dest: "~/.config/i3/arch.png" }
+    - { src: "~/.dotfiles/.config/polybar/config", dest: "~/.config/polybar/config" }
+    - { src: "~/.dotfiles/.config/polybar/launch.sh", dest: "~/.config/polybar/launch.sh" }
+    - { src: "~/.dotfiles/.config/polybar/bluetooth.sh", dest: "~/.config/polybar/bluetooth.sh" }
+    - { src: "~/.dotfiles/.config/polybar/playerctl.sh", dest: "~/.config/polybar/playerctl.sh" }
+    - { src: "~/.dotfiles/.config/rofi/config.rasi", dest: "~/.config/rofi/config.rasi" }
+    - { src: "~/.dotfiles/.config/autorandr", dest: "~/.config/autorandr" }

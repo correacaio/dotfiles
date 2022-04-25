@@ -1,0 +1,90 @@
+- name: Install sdkman
+  become: yes
+  shell: sh -c "$(curl -fsSL https://get.sdkman.io)"
+
+- name: Install go
+  become: yes
+  pacman:
+    name: go
+
+- name: Install python and pip
+  become: yes
+  pacman:
+    name:
+      - python
+      - python-pip
+
+- name: Install docker and docker-compose
+  become: yes
+  pacman:
+    name:
+      - docker
+      - docker-compose
+
+- name: Enable and start docker daemon
+  become: yes
+  systemd:
+    name: docker
+    enabled: yes
+    state: started
+
+- name: Add user to docker group
+  become: yes
+  user:
+    name: "{{ lookup('env','USER') }}"
+    groups: docker
+    append: true
+
+- name: Install ncurses5-compat-libs
+  yay:
+    name: ncurses5-compat-libs
+
+- name: Install kubectl, k9s and minikube
+  become: yes
+  pacman:
+    name:
+      - kubectl
+      - k9s
+      - minikube
+
+- name: Install github-cli
+  yay:
+    name: github-cli
+
+- name: Install aws-cli
+  become: yes
+  pacman:
+    name: aws-cli
+
+- name: Install terraform
+  become: yes
+  pacman:
+    name: terraform
+
+- name: Install wrk
+  yay:
+    name: wrk
+
+- name: Install apache-tools
+  yay:
+    name: apache-tools
+
+- name: Install sublime text
+  yay:
+    name: sublime-text-dev
+
+- name: Install vscode
+  yay:
+    name: visual-studio-code-bin
+
+- name: Install postman
+  yay:
+    name: postman-bin
+
+- name: Install jetbrains toolbox
+  yay:
+    name: jetbrains-toolbox
+
+- name: Install redis-desktop-manager
+  yay:
+    name: redis-desktop-manager

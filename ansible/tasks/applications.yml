@@ -1,0 +1,51 @@
+- name: Install libreoffice
+  become: yes
+  pacman:
+    name: libreoffice
+
+- name: Install zathura
+  become: yes
+  pacman:
+    name:
+      - zathura
+      - zathura-pdf-mupdf
+
+- name: Install gimp
+  become: yes
+  pacman:
+    name: gimp
+
+- name: Install chrome
+  yay:
+    name: google-chrome
+
+- name: Install brave
+  become: yes
+  yay:
+    name: brave-browser
+
+- name: Install spotify
+  yay:
+    name: spotify
+
+- name: Install slack
+  yay:
+    name: slack-desktop
+
+- name: Install discord
+  become: yes
+  pacman:
+    name: discord
+
+- name: Install typora
+  yay:
+    name: typora
+
+- name: Install lastpass
+  yay:
+    name: lastpass
+
+- name: Install authy
+  yay:
+    name: authy
+

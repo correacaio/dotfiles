@@ -1,0 +1,8 @@
+- name: Playbook to install dotfiles
+  hosts: localhost
+  tasks:
+    - include_tasks: tasks/system.yml
+    - include_tasks: tasks/desktop.yml
+    - include_tasks: tasks/applications.yml
+    - include_tasks: tasks/programming.yml
+    - include_tasks: tasks/dotfiles.yml

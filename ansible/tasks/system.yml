@@ -1,0 +1,220 @@
+- name: Install pacman tools
+  become: yes
+  pacman:
+    name:
+      - reflector
+      - pacman-contrib
+
+- name: Check pacman mirrors
+  become: yes
+  shell: cat /etc/pacman.d/mirrorlist
+  register: reflector
+  changed_when: False
+
+- name: Clone yay repository
+  git:
+    repo: https://aur.archlinux.org/yay.git
+    dest: ~/.yay
+
+- name: Check yay installation
+  stat:
+    path: /usr/bin/yay
+  register: yay
+  changed_when: False
+
+- name: Install yay
+  shell:
+    cmd: makepkg -si --noconfirm
+    chdir: ~/.yay
+  when: yay.stat.exists == False
+
+- name: Install wap_supplicant
+  become: yes
+  pacman:
+    name: wpa_supplicant
+
+- name: Enable and start wpa_supplicant
+  become: yes
+  systemd: 
+    name: wpa_supplicant
+    enabled: yes
+    state: started
+
+- name: Install connman
+  become: yes
+  pacman:
+    name: connman
+
+- name: Ensure connman config dir exists
+  become: yes
+  file:
+    path: /etc/connman
+    state: directory
+
+- name: Copy connman config
+  become: yes
+  copy:
+    src: ../files/connman.conf
+    dest: /etc/connman/main.conf
+
+- name: Install connman cmst
+  become: yes
+  yay:
+    name: cmst
+
+- name: Enable and start connman
+  become: yes
+  systemd:
+    name: connman
+    enabled: yes
+    state: started
+
+- name: Install audio tools
+  become: yes
+  pacman:
+    name:
+      - alsa-utils
+      - pipewire
+      - pipewire-pulse
+      - pavucontrol
+      - playerctl
+      - pamixer
+
+- name: Install bluetooth tools
+  become: yes
+  pacman:
+    name:
+      - bluez
+      - bluez-utils
+
+- name: Enable and start bluetooth service
+  become: yes
+  systemd:
+    name: bluetooth
+    enabled: yes
+    state: started
+
+- name: Ensure modprobe config dir exists
+  become: yes
+  file:
+    path: /etc/modprobe.d
+    state: directory
+
+- name: Prevent warning user with internal buzzer
+  become: yes
+  copy:
+    src: ../files/nobeep.conf
+    dest: /etc/modprobe.d/nobeep.conf
+
+- name: Install ZSH
+  become: yes
+  pacman:
+    name: zsh
+
+- name: Check user shell
+  shell: 'echo $SHELL'
+  register: default_shell
+  changed_when: False
+
+- name: Set ZSH as user shell
+  shell: chsh -s /bin/zsh
+  when: default_shell.stdout.find('/bin/zsh') == -1
+
+- name: Check oh-my-zsh installation
+  stat:
+    path: ~/.oh-my-zsh
+  register: oh_my_zsh
+  changed_when: False
+
+- name: Install oh-my-zsh
+  shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  when: oh_my_zsh.stat.exists == False
+
+- name: Install lambda-mod ZSH theme
+  get_url:
+    url: https://raw.githubusercontent.com/halfo/lambda-mod-zsh-theme/master/lambda-mod.zsh-theme
+    dest: ~/.oh-my-zsh/themes/lambda-mod.zsh-theme
+
+- name: Install zsh-syntax-highlighting
+  git:
+    repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+    dest: ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+
+- name: Install zsh-autosuggestions
+  git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions.git
+    dest: ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+
+- name: Install fzf
+  become: yes
+  pacman:
+    name: fzf
+
+- name: Install ranger
+  become: yes
+  pacman:
+    name: ranger
+
+- name: Install core packages
+  become: yes
+  pacman:
+    name:
+      - git
+      - openssh
+      - openvpn
+      - curl
+      - wget
+      - zip
+      - unzip
+      - jq
+      - xclip
+      - sl
+      - neofetch
+      - screenfetch
+      - htop
+      - nfs-utils
+      - dnsutils
+
+- name: Install pacman fonts
+  become: yes
+  pacman:
+    name:
+      - ttf-dejavu
+      - ttf-fira-mono
+      - ttf-font-awesome
+      - noto-fonts
+      - noto-fonts-emoji
+      - noto-fonts-extra
+      - cantarell-fonts
+      - awesome-terminal-fonts
+      - adobe-source-code-pro-fonts
+
+- name: Install aur fonts
+  yay:
+    name:
+      - siji-git
+      - ttf-jetbrains-mono
+
+- name: Install light
+  become: yes
+  pacman:
+    name: light
+
+- name: Add user to video group
+  become: yes
+  user:
+    name: "{{ lookup('env','USER') }}"
+    groups: video
+    append: true
+
+- name: Setup global git config
+  git_config:
+    name: "{{ item.name }}"
+    value: "{{ item.value }}"
+    scope: global
+  with_items:
+    - { name: "user.name",   value: "Caio A S Correa" }
+    - { name: "user.email",  value: "caio.correa@ifood.com.br" }
+    - { name: "core.editor", value: "vim" }
+    - { name: "pull.rebase", value: "false" }
+    - { name: "ui.color",    value: "true" }
