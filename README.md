@@ -2,14 +2,16 @@
 
 My Arch configuration running i3 as window manager, powered by Ansible
 
-![Desktop](screenshots/desktop.png)
-
 ## Installation
 
 Run this:
 
 ```sh
-git clone https://github.com/rodolphocouto/dotfiles.git ~/.dotfiles
+git clone https://github.com/correacaio/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 ./setup.sh
 ```
+
+## Special note
+This is a fork from another [repository](https://github.com/rodolphocouto/dotfiles).
+Special thanks to Rodolpho Couto, its creator.
