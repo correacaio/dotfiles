@@ -36,7 +36,7 @@ bindsym $mod+Shift+l exec i3lock -t -i ~/.config/i3/arch.png
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Shift+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill

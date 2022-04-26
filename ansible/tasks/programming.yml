@@ -1,6 +1,15 @@
+- name: Check sdkman installation
+  stat:
+    path: $HOME/.sdkman/bin/sdkman-init.sh
+  register: sdkman
+  changed_when: False
+
 - name: Install sdkman
   become: yes
-  shell: sh -c "$(curl -fsSL https://get.sdkman.io)"
+  shell: |
+    sh -c "$(curl -fsSL https://get.sdkman.io)"
+    source "$HOME/.sdkman/bin/sdkman-init.sh"
+  when: sdkman.stat.exists == False
 
 - name: Install go
   become: yes
