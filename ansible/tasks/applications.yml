@@ -49,3 +49,7 @@
   yay:
     name: authy
 
+- name: Install flameshot
+  become: yes
+  pacman:
+    name: flameshot
