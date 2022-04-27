@@ -61,6 +61,10 @@
   pacman:
     name: pcmanfm
 
+- name: Install xarchiver
+  yay:
+    name: xarchiver
+
 - name: Install screen utilities
   become: yes
   pacman:
