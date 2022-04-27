@@ -84,3 +84,7 @@
   file:
     path: ~/.config/gtk-3.0
     state: directory
+
+- name: Configure two keyboard layouts
+  become: yes
+  shell: localectl --no-convert set-x11-keymap br,us pc104 abnt2, grp:alt_shift_toggle
