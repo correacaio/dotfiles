@@ -53,3 +53,7 @@
   become: yes
   pacman:
     name: flameshot
+
+- name: Install zoom
+  yay:
+    name: zoom
