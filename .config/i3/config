@@ -30,7 +30,7 @@ font pango:JetBrains Mono, Awesome 10
 bindsym $mod+d exec --no-startup-id "rofi -modi drun,run,calc,window -show drun"
 
 # start i3lock (lockscreen)
-bindsym $mod+Shift+l exec i3lock -t -i ~/.config/i3/arch.png
+bindsym $mod+Shift+l exec i3lock -t -i ~/.config/i3/wallpaper.jpg
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -170,7 +170,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-exec_always --no-startup-id "feh --bg-fill ~/.config/i3/arch.png"
+exec_always --no-startup-id "feh --bg-fill ~/.config/i3/wallpaper.jpg"
 exec_always --no-startup-id "xbindkeys"
 
 # Start i3bar to display a workspace bar
