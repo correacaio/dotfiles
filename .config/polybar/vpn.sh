@@ -1,6 +1,10 @@
 #!/bin/sh
-if [ "$(pgrep -x openvpn)" != "" ]; then
+if [ "$(pgrep -x openconnect)" != "" ]; then
   echo "vpn"
 else
-  echo ""
+  if [ "$(pgrep -x openvpn)" != "" ]; then
+    echo "vpn"
+  else
+    echo ""
+  fi
 fi

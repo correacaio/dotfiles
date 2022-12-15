@@ -206,15 +206,3 @@
     name: "{{ lookup('env','USER') }}"
     groups: video
     append: true
-
-- name: Setup global git config
-  git_config:
-    name: "{{ item.name }}"
-    value: "{{ item.value }}"
-    scope: global
-  with_items:
-    - { name: "user.name",   value: "Caio A S Correa" }
-    - { name: "user.email",  value: "caio.correa@ifood.com.br" }
-    - { name: "core.editor", value: "vim" }
-    - { name: "pull.rebase", value: "false" }
-    - { name: "ui.color",    value: "true" }

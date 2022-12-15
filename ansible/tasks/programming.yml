@@ -56,35 +56,14 @@
       - k9s
       - minikube
 
-- name: Install github-cli
-  yay:
-    name: github-cli
-
 - name: Install aws-cli
   become: yes
   pacman:
     name: aws-cli
 
-- name: Install terraform
-  become: yes
-  pacman:
-    name: terraform
-
 - name: Install wrk
   yay:
     name: wrk
-
-- name: Install apache-tools
-  yay:
-    name: apache-tools
-
-- name: Install sublime text
-  yay:
-    name: sublime-text-dev
-
-- name: Install vscode
-  yay:
-    name: visual-studio-code-bin
 
 - name: Install postman
   yay:
@@ -93,7 +72,3 @@
 - name: Install jetbrains toolbox
   yay:
     name: jetbrains-toolbox
-
-- name: Install redis-desktop-manager
-  yay:
-    name: redis-desktop-manager
