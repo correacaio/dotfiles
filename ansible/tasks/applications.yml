@@ -5,11 +5,6 @@
       - zathura
       - zathura-pdf-mupdf
 
-- name: Install gimp
-  become: yes
-  pacman:
-    name: gimp
-
 - name: Install chrome
   yay:
     name: google-chrome
@@ -17,7 +12,7 @@
 - name: Install brave
   become: yes
   yay:
-    name: brave-browser
+    name: brave-bin
 
 - name: Install spotify
   yay:
@@ -31,10 +26,6 @@
   become: yes
   pacman:
     name: discord
-
-- name: Install typora
-  yay:
-    name: typora
 
 - name: Install lastpass
   yay:

@@ -6,9 +6,8 @@
 
 - name: Install sdkman
   become: yes
-  shell: |
-    sh -c "$(curl -fsSL https://get.sdkman.io)"
-    source "$HOME/.sdkman/bin/sdkman-init.sh"
+  
+  shell: curl -s "https://get.sdkman.io" | bash
   when: sdkman.stat.exists == False
 
 - name: Install go

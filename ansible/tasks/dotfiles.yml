@@ -10,6 +10,7 @@
     - { src: "~/.dotfiles/.zshrc", dest: "~/.zshrc" }
     - { src: "~/.dotfiles/.config/gtk-3.0/settings.ini", dest: "~/.config/gtk-3.0/settings.ini" }
     - { src: "~/.dotfiles/.config/i3/config", dest: "~/.config/i3/config" }
+    - { src: "~/.dotfiles/.config/alacritty/alacritty.yml", dest: "~/.config/alacritty/alacritty.yml" }
     - { src: "~/.dotfiles/.config/i3/wallpaper.jpg", dest: "~/.config/i3/wallpaper.jpg" }
     - { src: "~/.dotfiles/.config/polybar/config.ini", dest: "~/.config/polybar/config.ini" }
     - { src: "~/.dotfiles/.config/polybar/launch.sh", dest: "~/.config/polybar/launch.sh" }

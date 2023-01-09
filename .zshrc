@@ -12,7 +12,6 @@ plugins=(
     docker-compose
     kops
     kubectl
-    minikube
     gradle
     mvn
     zsh-autosuggestions
@@ -25,3 +24,4 @@ source $ZSH/oh-my-zsh.sh
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 export PATH=/home/caiocorrea/.local/bin:/home/caiocorrea/.sdkman/candidates/maven/current/bin:/home/caiocorrea/.sdkman/candidates/kotlin/current/bin:/home/caiocorrea/.sdkman/candidates/java/current/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
+export PATH=/home/caiocorrea/.local/bin:${PATH}

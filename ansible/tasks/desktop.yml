@@ -7,6 +7,7 @@
       - xorg-xfd
       - xorg-xprop
       - xorg-xkill
+      - xorg-xauth
       - xautomation
       - xbindkeys
 
@@ -50,6 +51,11 @@
   pacman:
     name: alacritty
 
+- name: Ensure alacritty config dir exists
+  file:
+    path: ~/.config/alacritty
+    state: directory
+
 - name: Install pcman
   become: yes
   pacman:
@@ -71,6 +77,10 @@
 - name: Install autorandr
   yay:
     name: autorandr
+
+- name: Install polkit
+  yay:
+    name: polkit
 
 - name: Install arc-gtk-theme
   become: yes

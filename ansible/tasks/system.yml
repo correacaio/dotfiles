@@ -28,18 +28,6 @@
     chdir: ~/.yay
   when: yay.stat.exists == False
 
-- name: Install wap_supplicant
-  become: yes
-  pacman:
-    name: wpa_supplicant
-
-- name: Enable and start wpa_supplicant
-  become: yes
-  systemd: 
-    name: wpa_supplicant
-    enabled: yes
-    state: started
-
 - name: Install connman
   become: yes
   pacman:
@@ -117,7 +105,7 @@
   changed_when: False
 
 - name: Set ZSH as user shell
-  shell: chsh -s /bin/zsh
+  shell: chsh -s $(which zsh)
   when: default_shell.stdout.find('/bin/zsh') == -1
 
 - name: Check oh-my-zsh installation
